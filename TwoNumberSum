@@ -1,0 +1,86 @@
+//2 for loops
+
+import java.util.*;
+
+class Program {
+  public static int[] twoNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		int len = array.length;
+		int a[] = new int[2];
+		for(int i = 0; i < len; i++){
+			for(int j = i+1; j < len; j++){
+				if(array[i] + array[j] == targetSum){
+					a[0] = array[i];
+					a[1] = array[j];
+					return a;
+				}
+			}
+		}
+    return new int[0];
+  }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+//sort and binary search
+
+import java.util.*;
+
+class Program {
+  public static int[] twoNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		int len = array.length;
+		int a[] = new int[2];
+		Arrays.sort(array);
+		for(int i = 0; i < len; i++){
+			int pos = find(array, targetSum-array[i]);
+			if(pos >= 0 && pos != i){
+				a[0] = array[i];
+				a[1] = array[pos];
+				return a;
+			}
+		}
+    return new int[0];
+  }
+	
+	public static int find(int[] a, int n){
+		int low = 0, high = a.length-1;
+		while(low <= high){
+			int mid = low + (high - low) / 2;
+			if(a[mid] == n)
+				return mid;
+			else if(a[mid] < n)
+				low = mid + 1;
+			else
+				high = mid - 1;
+		}
+		return -1;
+	}
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+//hash map
+
+import java.util.*;
+
+class Program {
+  public static int[] twoNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		Map<Integer, Integer> map = new HashMap();
+		for(int i = 0; i < array.length; i++)
+			map.put(array[i], i);
+		for(int i = 0; i < array.length; i++){
+			if(map.containsKey(targetSum - array[i]) && map.get(targetSum - array[i]) != i){
+				int a[] = new int[2];
+				a[0] = array[i];
+				a[1] = array[map.get(targetSum - array[i])];
+				return a;
+			}
+		}
+			
+    return new int[0];
+  }
+}
+
