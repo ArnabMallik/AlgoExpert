@@ -1,0 +1,42 @@
+import java.util.*;
+
+class Program {
+  public static boolean isPalindrome(String str) {
+    // Write your code here.
+		StringBuilder sb = new StringBuilder();
+		for(int i = str.length() - 1; i >= 0; i--){
+			char ch = str.charAt(i);
+			sb.append(ch);
+		}
+		String rev = sb.toString();
+		if(str.equals(rev))
+			return true;
+    return false;
+  }
+}
+
+
+import java.util.*;
+
+class Program {
+  public static boolean isPalindrome(String str) {
+    // Write your code here.
+		int l = str.length();
+		if(l <= 1)
+			return true;
+		return check(str, 0);
+  }
+	
+	public static boolean check(String s, int pos){
+		int l = s.length();
+		boolean ret = true;
+		
+		if(l <= 1 || pos >= l / 2)
+			return ret;
+		if(s.charAt(pos) != s.charAt(l - 1 - pos))
+			return false;
+		s = s.substring(1, l - 1);
+		pos++;
+		return ret & check(s, pos);
+	}
+}
