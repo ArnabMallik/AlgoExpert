@@ -1,0 +1,14 @@
+import java.util.*;
+
+class Program {
+
+  public int[] sortedSquaredArray(int[] array) {
+    // Write your code here.
+		for(int i = 0; i < array.length; i++){
+			int a = array[i] * array[i];
+			array[i] = a;
+		}
+		Arrays.sort(array);
+    return array;
+  }
+}
