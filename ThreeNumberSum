@@ -1,0 +1,86 @@
+import java.util.*;
+
+class Program {
+  public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		int l = array.length;
+		List<Integer[]> list = new ArrayList<Integer[]>();
+		for(int i = 0; i < l; i++){
+			for(int j = i+1; j < l; j++){
+				for(int k = j+1; k < l; k++){
+					if(array[i] + array[j] + array[k] == targetSum && i != j && j != k && k != i){
+						Integer[] a = new Integer[3];
+						a[0] = array[i];
+						a[1] = array[j];
+						a[2] = array[k];
+						Arrays.sort(a);
+						list.add(a);
+					}
+				}
+			}
+		}
+		Collections.sort(list, new Comparator<Integer[]>(){
+			public int compare(Integer[] a, Integer[] b){
+				if(a[0] == b[0] && a[1] == b[1])
+					return a[2] - b[2];
+				else if(a[0] == b[0])
+					return a[1] - b[1];
+				else
+					return a[0] - b[0];
+			} 
+		});
+    return list;
+  }
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+import java.util.*;
+
+class Program {
+  public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		List<Integer[]> list = new ArrayList<Integer[]>();
+		Arrays.sort(array);
+
+		int l = array.length;
+		for(int i = 0; i < l-1; i++){
+			int num = array[i];
+			int low = i+1;
+			int high = l-1;
+			
+			while(low < high){
+				int res = num + array[low] + array[high];
+		 
+				if(res == targetSum){
+					Integer a[] = new Integer[3];
+					a[0] = num;
+					a[1] = array[low];
+					a[2] = array[high];
+					list.add(a);
+					low++;
+					high--;
+				}
+				else if(res < targetSum){
+					low++;
+				}
+				else{
+					high--;
+				}
+			}
+		}
+		Collections.sort(list, new Comparator<Integer[]>(){
+			public int compare(Integer[] a, Integer[] b){
+				if(a[0] == b[0] && a[1] == b[1])
+					return a[2] - b[2];
+				else if(a[0] == b[0])
+					return a[1] - b[1];
+				else
+					return a[0] - b[0];
+			} 
+		});
+    return list;
+  }
+}
