@@ -12,3 +12,50 @@ class Program {
     return array;
   }
 }
+
+-----------------------------------------------------------------------------------------------------
+
+class Program {
+
+  public int[] sortedSquaredArray(int[] array) {
+    // Write your code here.
+		int len = array.length, pos = -1;
+		int ans[] = new int[len];
+		for(int i = 0; i < len; i++){
+			if(array[i] < 0)
+				pos = i;
+		}
+		if(pos == -1){
+			for(int i = 0; i < len; i++)
+				ans[i] = array[i] * array[i];
+		}else if(pos == len - 1){
+			for(int i = 0; i < len; i++)
+				ans[i] = array[len - 1 - i] * array[len - 1 - i];
+		}else{
+			int low = pos, high = pos + 1, k = 0;
+			while(low >= 0 && high < len){
+				if(array[low] * array[low] < array[high] * array[high]){
+					ans[k] = array[low] * array[low];
+					k++;
+					low --;
+				}else{
+					ans[k] = array[high] * array[high];
+					k++;
+					high++;
+				}
+			}
+			while(low >= 0){
+				ans[k] = array[low] * array[low];
+				k++;
+				low --;
+			}
+			while(high < len){
+				ans[k] = array[high] * array[high];
+				k++;
+				high++;
+			}
+		}
+		return ans;
+  }
+}
+
