@@ -1,0 +1,56 @@
+import java.util.*;
+
+class Program {
+  public static int[] findThreeLargestNumbers(int[] array) {
+    // Write your code here.
+		int a[] = new int[3];
+		int k = 2;
+		for(int z = 0; z < 3; z++){
+			int max = Integer.MIN_VALUE, pos = -1;
+			for(int i = 0; i < array.length; i++){
+				if(array[i] >= max){
+					max = array[i];
+					pos = i;
+				}
+			}
+			array[pos] = Integer.MIN_VALUE;
+			a[k--] = max;	
+		}
+		
+    return a;
+  }
+}
+
+
+--------------------------------------------------------------------------------------
+
+
+import java.util.*;
+
+class Program {
+  public static int[] findThreeLargestNumbers(int[] array) {
+    // Write your code here.
+		int a[] = new int[3];
+		Arrays.fill(a, Integer.MIN_VALUE);
+		
+		for(int i : array){
+			int old2 = a[2];
+			int old1 = a[1];
+			
+			if(i >= a[2]){
+				a[2] = i;
+				a[1] = old2;
+				a[0] = old1;
+			}
+			else if(i >= a[1]){
+				a[1] = i;
+				a[0] = old1;
+			}
+			else if(i >= a[0]){
+				a[0] = i;
+			}
+		}
+		
+    return a;
+  }
+}
