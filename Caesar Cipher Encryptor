@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Program {
+  public static String caesarCypherEncryptor(String str, int key) {
+    // Write your code here.
+		String ans = "";
+		key %= 26;
+		for(char c : str.toCharArray()){
+			int a = (int) c;
+			a+= key;
+			System.out.println(a);
+			if(a > 122){
+				a = (a % 122) + 96; 
+			}
+			ans += (char)a;
+		}
+    return ans;
+  }
+}
