@@ -1,0 +1,28 @@
+import java.util.*;
+
+class Program {
+
+  public boolean classPhotos(
+      ArrayList<Integer> redShirtHeights, ArrayList<Integer> blueShirtHeights) {
+    // Write your code here.
+		Collections.sort(redShirtHeights);
+		Collections.sort(blueShirtHeights);
+		int len = redShirtHeights.size();
+		
+		if(redShirtHeights.get(0) == blueShirtHeights.get(0))
+			return false;
+		else if(redShirtHeights.get(0) < blueShirtHeights.get(0)){
+			for(int i = 1; i < len; i++){
+				if(redShirtHeights.get(i) > blueShirtHeights.get(i))
+					return false;
+			}
+		}else{
+			for(int i = 1; i < len; i++){
+				if(redShirtHeights.get(i) < blueShirtHeights.get(i))
+					return false;
+			}
+		}
+		
+    return true;
+  }
+}
