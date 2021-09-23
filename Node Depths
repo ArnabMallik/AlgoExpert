@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Program {
+
+  public static int nodeDepths(BinaryTree root) {
+    // Write your code here.
+		int sum = 0;
+		sum = dfs(root, sum);
+    return sum;
+  }
+	
+	public static int dfs(BinaryTree root, int sum){
+		if(root == null)
+			return 0;
+		int l = dfs(root.left, sum + 1);
+		int r = dfs(root.right, sum + 1);
+		sum = sum + l + r;
+		return sum;
+	}
+
+  static class BinaryTree {
+    int value;
+    BinaryTree left;
+    BinaryTree right;
+
+    public BinaryTree(int value) {
+      this.value = value;
+      left = null;
+      right = null;
+    }
+  }
+}
