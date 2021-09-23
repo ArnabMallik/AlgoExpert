@@ -1,0 +1,33 @@
+import java.util.*;
+
+class Program {
+
+  public boolean generateDocument(String characters, String document) {
+    // Write your code here.
+		
+		if(document.equals(""))
+			return true;
+		
+		HashMap<Character, Integer> mapCharacter = new HashMap<Character, Integer>();
+		HashMap<Character, Integer> mapDoc = new HashMap<Character, Integer>();
+		
+		for(Character c : characters.toCharArray()){
+			int count = mapCharacter.getOrDefault(c, 0);
+			count++;
+			mapCharacter.put(c, count);
+		}
+		
+		for(Character c : document.toCharArray()){
+			int count = mapDoc.getOrDefault(c, 0);
+			count++;
+			mapDoc.put(c, count);
+		}
+    for(Character c : mapDoc.keySet()){
+			if(!mapCharacter.containsKey(c))
+				return false;
+			if(mapCharacter.get(c) < mapDoc.get(c))
+				return false;
+		}
+		return true;
+  }
+}
