@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Program {
+  public static int[] bubbleSort(int[] array) {
+    // Write your code here.
+		int len = array.length;
+		for(int i = 0; i < len - 1; i++){
+			int flag = 0;
+			for(int j = 0; j < len - 1; j++){
+				if(array[j] > array[j+1]){
+					int temp = array[j+1];
+					array[j+1] = array[j];
+					array[j] = temp;
+					flag = 1;
+				}
+			}
+			if(flag == 0)
+				break;
+		}
+    return array;
+  }
+}
