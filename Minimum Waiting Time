@@ -1,0 +1,19 @@
+ import java.util.*;
+
+class Program {
+
+  public int minimumWaitingTime(int[] queries) {
+    // greedy + dp
+		int sum = 0, k = 0;
+		Integer arr[] = new Integer[queries.length];
+		for(int i : queries)
+			arr[k++] = i;
+		Arrays.sort(arr);
+		queries[0] = 0;
+		for(int i = 1; i < queries.length; i++)
+			queries[i] = queries[i - 1] + arr[i - 1];
+		for(int i : queries)
+			sum += i;
+    return sum;
+  }
+}
