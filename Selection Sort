@@ -1,0 +1,25 @@
+import java.util.*;
+
+class Program {
+  public static int[] selectionSort(int[] array) {
+    // Write your code here.
+		
+		int len = array.length;
+		
+		for(int i = 0; i < len; i++){
+			int min = array[i], pos = i;
+			for(int j = i+1; j < len; j++){
+				if(array[j] < min){
+					min = array[j];
+					pos = j;
+				}
+			}
+			if(pos != i){
+				int temp = array[i];
+				array[i] = array[pos];
+				array[pos] = temp;
+			}
+		}
+    return array;
+  }
+}
