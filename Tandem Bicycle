@@ -1,0 +1,34 @@
+import java.util.*;
+
+class Program {
+
+  public int tandemBicycle(int[] redShirtSpeeds, int[] blueShirtSpeeds, boolean fastest) {
+    // Write your code here.
+		int sum = 0, len = redShirtSpeeds.length, k = 0;
+		Integer red[] = new Integer[len];
+		Integer blue[] = new Integer[len];
+		
+		for(int i : redShirtSpeeds)
+			red[k++] = i;
+		k = 0;
+		for(int i : blueShirtSpeeds)
+			blue[k++] = i;
+		
+		if(fastest){
+			Arrays.sort(red);
+			Arrays.sort(blue, Collections.reverseOrder());
+			for(int i = 0; i < len; i++){
+				int a = Math.max(red[i], blue[i]);
+				sum += a;
+			}
+		}else{
+			Arrays.sort(red);
+			Arrays.sort(blue);
+			for(int i = 0; i < len; i++){
+				int a = Math.max(red[i], blue[i]);
+				sum += a;
+			}
+		}
+    return sum;
+  }
+}
