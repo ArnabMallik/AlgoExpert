@@ -3,7 +3,7 @@ import java.util.*;
 class Program {
 	static int ans = Integer.MAX_VALUE;
   public static int findClosestValueInBst(BST tree, int target) {
-    // Write your code here.
+    // See all nodes, don't use BST property
 		find(tree, target);
     return ans;
   }
@@ -19,9 +19,9 @@ class Program {
 			rVal = node.right.value;
 		int nodeDiff = Math.abs(node.value - target);
 		if(Math.abs(ans - target) > nodeDiff)
-				ans = node.value;
-			find(node.left, target);
-			find(node.right, target);
+			ans = node.value;
+		find(node.left, target);
+		find(node.right, target);
 		
 	}
 
@@ -35,3 +35,49 @@ class Program {
     }
   }
 }
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+import java.util.*;
+
+class Program {
+	static int ans = Integer.MAX_VALUE;
+  public static int findClosestValueInBst(BST tree, int target) {
+    // Yse BST property
+		find(tree, target);
+    return ans;
+  }
+	
+	public static void find(BST node, int target){
+		
+		int lVal = Integer.MAX_VALUE, rVal = Integer.MAX_VALUE;
+		if(node == null)
+			return;
+		if(node.left != null)
+			lVal = node.left.value;
+		if(node.right != null)
+			rVal = node.right.value;
+		int nodeDiff = Math.abs(node.value - target);
+		if(Math.abs(ans - target) > nodeDiff)
+			ans = node.value;
+		if(target >= node.value)
+			find(node.right, target);
+		else
+			find(node.left, target);
+			
+		
+	}
+
+  static class BST {
+    public int value;
+    public BST left;
+    public BST right;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+}
+
