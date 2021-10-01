@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Program {
+  // Tip: You can use `element instanceof ArrayList` to check whether an item
+  // is an array or an integer.
+	static int countBracket = 1;
+  public static int productSum(List<Object> array) {
+    // Write your code here.
+		return calculate(array);
+  }
+	
+	public static int calculate(List<Object> array){
+		
+		int sum = 0;
+		for(int i = 0; i < array.size(); i++){
+				Object o = array.get(i);
+				if(!(o instanceof ArrayList)){
+					Integer num = (Integer)o;
+					sum+= num;
+				} else{
+					countBracket++;
+					@SuppressWarnings("unchecked")
+					ArrayList<Object> list = (ArrayList<Object>)o;
+					int listSum = countBracket * calculate(list);
+					countBracket--;
+					sum+= listSum;
+				}
+			}
+		return sum;
+	}
+}
