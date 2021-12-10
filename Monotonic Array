@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Program {
+  public static boolean isMonotonic(int[] array) {
+    // Write your code here.
+		int len = array.length;
+		if(len <= 1)
+			return true;
+		int a = array[0];
+		int b = array[1];
+		int k = 1;
+		boolean b1 = true, b2 = true;
+
+			while(k < len){
+				if(array[k] < array[k-1])
+					b1 = false;
+				k++;
+			}
+		k = 1;
+			while(k < len){
+				if(array[k] > array[k-1])
+					b2 = false;
+				k++;
+			}
+    return b1|b2;
+  }
+}
