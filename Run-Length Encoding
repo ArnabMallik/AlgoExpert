@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Program {
+  public String runLengthEncoding(String string) {
+    // Write your code here.
+		int len = string.length();
+		int i = 0, j = 1, count = 1;
+		String ans = "";
+		
+		if(len == 0)
+			return ans;
+		if(len == 1){
+			char ch = string.charAt(0);
+			ans+= count;
+			ans+= ch;
+			return ans;
+		}
+	
+		while(i < len && j <= len){
+			count = 1;
+			char ch = string.charAt(i);
+			
+			if(j >= len || ch != string.charAt(j)){
+				ans+= count;
+				ans+= ch;
+				i = j;
+				j = i+1;
+			}else{
+				while(i < len && j < len && ch == string.charAt(j)){
+					count++;
+					j++;
+					if(count > 9){
+						ans+= "9";
+						ans+= ch;
+						count = 1;
+					}
+				}
+				ans+= count;
+				ans+= ch;
+				i = j;
+				j = i + 1;
+			}
+		}
+    return ans;
+  }
+}
