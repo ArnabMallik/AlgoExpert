@@ -1,0 +1,56 @@
+import java.util.*;
+
+class Program {
+	static ArrayList<Integer> list;
+  public static List<Integer> inOrderTraverse(BST tree, List<Integer> array) {
+    // Write your code here.
+		inorder(tree, array);
+    return array;
+  }
+
+  public static List<Integer> preOrderTraverse(BST tree, List<Integer> array) {
+    // Write your code here.
+		preorder(tree, array);
+		return array;
+  }
+
+  public static List<Integer> postOrderTraverse(BST tree, List<Integer> array) {
+    // Write your code here.
+		postorder(tree, array);
+		return array;
+  }
+	
+	public static void inorder(BST root, List<Integer> list){
+		if(root == null)
+			return;
+		inorder(root.left, list);
+		list.add(root.value);
+		inorder(root.right, list);
+	}
+	
+		public static void preorder(BST root, List<Integer> list){
+		if(root == null)
+			return;
+			list.add(root.value);
+			preorder(root.left, list);
+			preorder(root.right, list);
+	}
+	
+		public static void postorder(BST root, List<Integer> list){
+		if(root == null)
+			return;
+			postorder(root.left, list);
+			postorder(root.right, list);
+			list.add(root.value);
+	}
+
+  static class BST {
+    public int value;
+    public BST left;
+    public BST right;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+}
