@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Program {
+	static boolean b = true;
+  public static boolean validateBst(BST root) {
+    // Write your code here.
+		dfs(root);
+    return b;
+  }
+	
+	public static Integer dfs(BST root){
+		
+		if(root == null)
+			return null;
+		if(root.left == null && root.right == null)
+			return root.value;
+		Integer left = dfs(root.left);
+		Integer right = dfs(root.right);
+		
+		if(left == null){
+			if(right < root.value)
+				b = false;
+			return Math.max(root.value, right);
+		}
+			
+		if(right == null){
+			if(left >= root.value)
+				b = false;
+			return Math.max(root.value, left);
+		}
+			
+		if(left >= root.value || right < root.value)
+			b = false;
+		return Math.max(left, Math.max(root.value, right));
+	}
+
+  static class BST {
+    public int value;
+    public BST left;
+    public BST right;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+}
