@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Program {
+  public int[] arrayOfProducts(int[] array) {
+    // Write your code here.
+		
+		int len = array.length, prod = 1;
+		if(len <= 1)
+			return array;
+		if(len == 2){
+			int i = array[0];
+			int j = array[1];
+			array[0] = j;
+			array[1] = i;
+			return array;
+		}
+		
+		int left[] = new int[len];
+		int right[] = new int[len];
+
+		for(int i = 0; i < len; i++){
+			prod = prod * array[i];
+			left[i] = prod; 
+		}
+		prod = 1;
+		for(int i = len-1; i >= 0; i--){
+			prod = prod * array[i];
+			right[i] = prod;
+		}
+		
+		for(int i = 0; i < len; i++){
+			if(i == 0)
+				array[i] = right[i+1];
+			else if(i == len - 1)
+				array[i] = left[i-1];
+			else
+				array[i] = left[i-1] * right[i+1];
+		}
+    return array;
+  }
+}
