@@ -1,3 +1,5 @@
+//bottom-up approach
+
 import java.util.*;
 
 class Program {
@@ -32,3 +34,45 @@ class Program {
     }
   }
 }
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+//top-down approach
+
+import java.util.*;
+
+class Program {
+  public static void invertBinaryTree(BinaryTree tree) {
+    // Write your code here.
+		dfs(tree);
+  }
+
+	public static BinaryTree dfs(BinaryTree root){
+		
+		if(root == null)
+			return null;
+		
+		BinaryTree r = root.right;
+		BinaryTree l = root.left; 
+		root.left = r;
+		root.right = l;
+		
+		dfs(root.left);
+		dfs(root.right);
+		
+		return root;
+	}
+	
+  static class BinaryTree {
+    public int value;
+    public BinaryTree left;
+    public BinaryTree right;
+
+    public BinaryTree(int value) {
+      this.value = value;
+    }
+  }
+}
+
