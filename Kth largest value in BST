@@ -1,0 +1,30 @@
+import java.util.*;
+
+class Program {
+	static int ans = 0;
+  // This is an input class. Do not edit.
+  static class BST {
+    public int value;
+    public BST left = null;
+    public BST right = null;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+
+  public int findKthLargestValueInBst(BST tree, int k) {
+    // Write your code here.
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		dfs(tree, k, list);
+    return list.get(list.size() - k);
+  }
+	
+	public static void dfs(BST root, int k, ArrayList<Integer> list){
+		if(root == null)
+			return;
+		dfs(root.left, k, list);
+		list.add(root.value);
+		dfs(root.right, k, list);
+	}
+}
