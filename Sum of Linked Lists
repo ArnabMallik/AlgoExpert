@@ -1,0 +1,64 @@
+import java.util.*;
+
+class Program {
+  // This is an input class. Do not edit.
+  public static class LinkedList {
+    public int value;
+    public LinkedList next;
+
+    public LinkedList(int value) {
+      this.value = value;
+      this.next = null;
+    }
+  }
+
+  public LinkedList sumOfLinkedLists(LinkedList linkedListOne, LinkedList linkedListTwo) {
+		LinkedList ans = null, p = null;
+		//ArrayList<Integer> list = new ArrayList<Integer>();
+		LinkedList ptr1 = linkedListOne, ptr2 = linkedListTwo;
+		int sum = 0, carry = 0;
+		while(ptr1 != null && ptr2 != null){
+			sum = carry + ptr1.value + ptr2.value;
+			carry = (sum) / 10;
+			sum = sum % 10;
+			LinkedList temp = new LinkedList(sum);
+			if(ans == null){
+				ans = temp;
+				p = ans;
+			}else{
+				p.next = temp;
+				p = p.next;
+			}
+			//list.add(sum);
+			ptr1 = ptr1.next;
+			ptr2 = ptr2.next;
+		}
+		while(ptr1 != null){
+			
+			int val = ptr1.value + carry;
+			carry = val / 10;
+			val = val % 10;
+			LinkedList temp = new LinkedList(val);
+			ptr1 = ptr1.next;
+			p.next = temp;
+			p = p.next;
+		}
+		while(ptr2 != null){
+			
+			int val = ptr2.value + carry;
+			carry = val / 10;
+			val = val % 10;
+			LinkedList temp = new LinkedList(val);
+			ptr2 = ptr2.next;
+			p.next = temp;
+			p = p.next;
+		}
+		
+		if(carry != 0){
+			LinkedList temp = new LinkedList(carry);
+			p.next = temp;
+		}
+    // Write your code here.
+    return ans;
+  }
+}
