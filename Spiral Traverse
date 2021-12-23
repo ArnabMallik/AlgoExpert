@@ -1,0 +1,36 @@
+import java.util.*;
+
+class Program {
+  public static List<Integer> spiralTraverse(int[][] array) {
+    // Write your code here.
+		int lR = 0, lC = 0, uR = array.length-1, uC = array[0].length-1;
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		while(lR <= uR && lC <= uC){
+			
+			for(int c = lC; c <= uC; c++)
+				list.add(array[lR][c]);
+			
+			for(int r = lR+1; r <= uR; r++)
+				list.add(array[r][uC]);
+				
+			for(int c = uC-1; c >= lC; c--){
+				if(lR == uR)
+					break;
+				list.add(array[uR][c]);
+			}
+			
+				for(int r = uR-1; r > lR; r--){
+					if(lC == uC)
+						break;
+					list.add(array[r][lC]);	
+				}
+				
+			lR++;
+			lC++;
+			uC--;
+			uR--;
+		}
+    return list;
+  }
+}
