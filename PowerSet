@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Program {
+
+	static HashSet<Integer> set;
+	
+  public static List<List<Integer>> powerset(List<Integer> array) {
+    // Write your code here.
+		List<List<Integer>> ans = new ArrayList<List<Integer>>();
+		set = new HashSet<Integer>();
+		int len = array.size();
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		pow(array, 0, len, list, ans);
+    return ans;
+  }
+	
+	public static void pow(List<Integer> array, int i, int n, List<Integer> list, List<List<Integer>> ans){
+		
+		if(i == n){
+			List<Integer> l = new ArrayList<Integer>();
+			l.addAll(list);
+			ans.add(l);
+			return;	
+		}
+		
+		pow(array, i+1, n, list, ans);
+		
+		if(!set.contains(i)){
+			list.add(array.get(i));
+			set.add(i);
+			pow(array, i+1, n, list, ans);
+			list.remove(list.size()-1);
+			set.remove(i);
+		}
+		
+	}
+}
