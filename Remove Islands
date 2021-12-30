@@ -1,0 +1,52 @@
+import java.util.*;
+
+class Program {
+	int[][] visit;
+	int row, col;
+  public int[][] removeIslands(int[][] matrix) {
+    // Write your code here.
+		row = matrix.length;
+		col = matrix[0].length;
+		visit = new int[row][col];
+		for(int i = 0; i < row; i++){
+			dfs(i, 0, matrix);
+			dfs(i, col-1, matrix);
+		}
+		for(int i = 0; i < col; i++){
+			dfs(0, i, matrix);
+			dfs(row-1, i, matrix);
+		}
+		
+		for(int i = 0; i < row; i++){
+			for(int j = 0; j < col; j++){
+				if(matrix[i][j] == 1)
+					matrix[i][j] = 0;
+				if(matrix[i][j] == -1)
+					matrix[i][j] = 1;
+			}
+		}
+    return matrix;
+  }
+	
+	public void dfs(int i, int j, int[][] matrix){
+		if(matrix[i][j] == 1 && visit[i][j] == 0){
+			visit[i][j] = 1;
+			matrix[i][j] = -1;
+			int xx[] = {-1,0,1,0};
+			int yy[] = {0,-1,0,1};
+			for(int k = 0; k < 4; k++){
+				int x = i + xx[k];
+				int y = j + yy[k];
+				if(isValid(x, y) && matrix[x][y] == 1 && visit[x][y] == 0)
+					dfs(x, y, matrix);
+			}
+		}
+	}
+	
+	public boolean isValid(int i, int j){
+		if(i > 0 && i < row && j > 0 && j < col)
+			return true;
+		else
+			return false;	
+	}
+}
