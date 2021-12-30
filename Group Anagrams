@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Program {
+  public static List<List<String>> groupAnagrams(List<String> words) {
+    // Write your code here.
+		HashMap<String, List<String>> map = new HashMap<String, List<String>>();
+		ArrayList<List<String>> list = new ArrayList<List<String>>();
+		for(String s : words){
+			char[] temp = s.toCharArray();
+			Arrays.sort(temp);
+			String sorted = new String(temp);
+			
+			List<String> l = map.getOrDefault(sorted, new ArrayList<String>());
+			l.add(s);
+			map.put(sorted, l);
+		}
+		for(String s : map.keySet())
+			list.add(map.get(s));
+		
+    return list;
+  }
+}
