@@ -1,0 +1,35 @@
+import java.util.*;
+
+class Program {
+	static HashSet<Integer> set;
+  public static List<List<Integer>> getPermutations(List<Integer> array) {
+    // Write your code here.
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		ArrayList<List<Integer>> ans = new ArrayList<List<Integer>>();
+		if(array.size() == 0)
+			return new ArrayList<List<Integer>>();
+		set = new HashSet<Integer>();
+		rec(0, array, list, ans);
+    return ans;
+  }
+	
+	public static void rec(int i, List<Integer> array, ArrayList<Integer> list, ArrayList<List<Integer>> ans){
+		
+		ArrayList<Integer> tmp = new ArrayList<Integer>();
+		tmp.addAll(list);
+		
+		if(i == array.size()){
+			ans.add(tmp);
+			return;
+		}
+		for(int j = 0; j < array.size(); j++){
+			if(!set.contains(j)){
+				set.add(j);
+				tmp.add(array.get(j));
+				rec(i+1, array, tmp, ans);
+				set.remove(j);
+				tmp.remove(tmp.size()-1);
+			}
+		}
+	}
+}
