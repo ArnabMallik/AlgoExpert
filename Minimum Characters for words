@@ -1,0 +1,34 @@
+import java.util.*;
+
+class Program {
+
+  public char[] minimumCharactersForWords(String[] words) {
+    // Write your code here.
+		
+		if(words.length == 0)
+			return new char[] {};
+		ArrayList<Character> list = new ArrayList<Character>();
+		char[] tmp = words[0].toCharArray();
+		for(char c : tmp)
+			list.add(c);
+		
+		for(String s : words){
+			
+			ArrayList<Character> copy = new ArrayList<Character>();
+			copy.addAll(list);
+			for(int i = 0; i < s.length(); i++){
+				char ch = s.charAt(i);
+				if(copy.contains(ch)){
+					int indx = copy.indexOf(ch);
+					copy.remove(indx);
+				} else
+					list.add(ch);
+			}
+		}
+		int len = list.size();
+		char array[] = new char[len];
+		for(int i = 0; i < len; i++)
+			array[i] = list.get(i);
+    return array;
+  }
+}
