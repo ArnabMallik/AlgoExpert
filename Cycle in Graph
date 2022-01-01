@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Program {
+  static boolean ans = false;
+	static int[] visit;
+  public boolean cycleInGraph(int[][] edges) {
+    // Write your code here.
+		//0 white
+		//1 grey
+		//2 black
+		int n = edges.length;
+		boolean ans = false;
+		for(int i = 0; i < n; i++){
+			//reset visit
+			visit = new int[n];
+			ans = ans | dfs(i, edges);
+		}
+			
+    return ans;
+  }
+	
+	public static boolean dfs(int start, int[][] edges){
+		
+		boolean b = false;
+		visit[start] = 1;
+		int children[] = edges[start];
+		if(children.length > 0){
+			for(int child : children){
+				if(visit[child] == 2)
+					continue;
+				else if(visit[child] == 1){
+					return true;
+				}else
+					b = b | dfs(child, edges);
+			}
+		}
+		visit[start] = 2;
+		return  b;
+	}
+}
